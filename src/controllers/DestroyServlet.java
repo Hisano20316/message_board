@@ -33,9 +33,9 @@ public class DestroyServlet extends HttpServlet {
             // 該当のIDのメッセージ1件のみをデータベースから取得
             Message m = em.find(Message.class, (Integer)(request.getSession().getAttribute("message_id")));
 
-            em.getTransaction().begin();
+            em.getTransaction().begin();//トランザクションの開始 commitする内容
             em.remove(m);       // データ削除
-            em.getTransaction().commit();
+            em.getTransaction().commit();//トランザクションの終わり commit実行
             em.close();
 
             // セッションスコープ上の不要になったデータを削除
